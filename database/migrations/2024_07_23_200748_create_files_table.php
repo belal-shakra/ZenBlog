@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->integer('id', true);
 
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('username')->unique();
-            $table->string('email')->unique();
+            $table->string('name');
+            $table->string('path');
 
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->integer('blog_id');
+            $table->foreign('blog_id')->references('id')->on('blogs')->onDelete('cascade');
 
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('files');
     }
 };
