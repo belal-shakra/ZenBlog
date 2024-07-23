@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -20,15 +21,19 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.pages.contact');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreContactRequest $request)
     {
-        //
+        Contact::create(
+            $request->validated()
+        );
+
+        return back()->with('contactSentSuccessfully', 'Your message was sent successfully.');
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.pages.home.home');
 })->name('home');
-
-
-Route::get('/contact-us', function () {
-    return view('user.pages.contact');
-})->name('contact');
 
 Route::get('/about-us', function () {
     return view('user.pages.about');
@@ -46,6 +42,10 @@ Route::get('/edit', function () {
 Route::get('/profile', function () {
     return view('user.pages.profile.profile');
 })->name('user.profile');
+
+
+Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
+Route::resource('contact', ContactController::class)->only(['store']);
 
 
 require __DIR__.'/auth.php';

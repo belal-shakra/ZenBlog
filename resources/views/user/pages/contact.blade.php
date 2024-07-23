@@ -44,34 +44,34 @@
 
             </div>
 
+
             <div class="form mt-5">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="row">
-                <div class="form-group col-md-6">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-                </div>
-                <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
-                <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-            </div><!-- End Contact Form -->
+                <x-main.session session="contactSentSuccessfully" type="success" />
+
+                <form action="{{ route('contact.store') }}" method="post" role="form" class="php-email-form">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <x-form.input type="text" name="name" placeholder="Your Name" :value="old('name')"/>
+                        </div>
+                        <div class="col-md-6">
+                            <x-form.input type="text" name="email" placeholder="Your Email" :value="old('email')"/>
+                        </div>
+                    </div>
+
+                    <x-form.input type="text" name="subject" placeholder="Subject" :value="old('subject')"/>
+
+                    <x-form.textarea name="message" placeholder="Message" :value="old('message')"/>
+
+
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+            </div>
 
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 
 @endsection
