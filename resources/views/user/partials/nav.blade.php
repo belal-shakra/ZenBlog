@@ -3,7 +3,7 @@
 
         <a href="{{ route('home') }}" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="{{asset('assets')}}/user/img/logo.png" alt=""> -->
+            <img src="{{asset('assets')}}/user/img/logo.png" alt="logo">
             <h1>ZenBlog</h1>
         </a>
 
@@ -42,7 +42,9 @@
             <div id="user" class="navbar">
                 <div class="dropdown">
                     <a type="button">
-                        <span class="fw-bold">Belal Shakra</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                        <span class="fw-bold">
+                            {{ Auth::user()->first_name }} {{  Auth::user()->last_name }}
+                        </span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                     </a>
                     <ul>
                         <li class="nav-item-hover"><a href="{{ route('blog.index') }}">My Blogs</a></li>
@@ -52,8 +54,8 @@
                     </ul>
                 </div>
             </div>
-{{--
-            <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+
+            {{-- <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
             <i class="bi bi-list mobile-nav-toggle"></i>
 
             <div class="search-form-wrap js-search-form-wrap">
