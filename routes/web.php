@@ -48,6 +48,7 @@ Route::get('/profile', function () {
 })->name('user.profile');
 
 
+require __DIR__.'/auth.php';
 
 
 
@@ -68,4 +69,3 @@ Route::get('/profile', function () {
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__.'/auth.php';
