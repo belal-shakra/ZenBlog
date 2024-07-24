@@ -27,9 +27,6 @@ Route::get('/create', function () {
     return view('user.pages.blog.create');
 })->name('blog.create');
 
-Route::get('/show', function () {
-    return view('user.pages.blog.show');
-})->name('blog.show');
 
 Route::get('/edit', function () {
     return view('user.pages.blog.edit');
@@ -43,7 +40,7 @@ Route::get('/profile', function () {
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
 Route::resource('contact', ContactController::class)->only(['store']);
 
-Route::resource('blog', BlogController::class);
+Route::resource('blog', BlogController::class)->middleware('auth');
 
 require __DIR__.'/auth.php';
 

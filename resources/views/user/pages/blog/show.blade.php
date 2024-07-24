@@ -1,7 +1,7 @@
 @extends('user.layout')
 
 
-@section('tab-title', 'ZenBlog | Contact us')
+@section('tab-title', 'ZenBlog | '. $blog->title)
 
 
 @section('content')

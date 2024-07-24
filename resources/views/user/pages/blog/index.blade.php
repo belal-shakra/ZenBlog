@@ -28,7 +28,7 @@
                                 </div>
 
                                 <h3><a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a></h3>
-                                <p class="">{{ $blog->blog }}</p>
+                                <p class="text-truncate">{{ $blog->blog }}</p>
                                 <div class="d-flex align-items-center author">
                                     <div class="photo">
                                         <img src="{{asset('assets')}}/user/img/person-2.jpg" alt=""
