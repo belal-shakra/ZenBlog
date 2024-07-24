@@ -7,25 +7,32 @@
             <span>{{ $blog->created_at->format('M jS o') }}</span>
         </div>
 
-        <div class="col col-3">
-            <div class="d-flex flex-row-reverse">
-                <div class="dropdown my-2 fs-4">
-                    <a class="" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-three-dots"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">Edit</a></li>
-                        <li>
-                            <!-- Button trigger modal -->
-                            <a class="dropdown-item bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete-blog"
-                            href="">
-                                Delete
-                            </a>
-                        </li>
-                    </ul>
+        @if ($blog->user_id == Auth::user()->id)
+            <div class="col col-3">
+                <div class="d-flex flex-row-reverse">
+                    <div class="dropdown my-2 fs-4">
+                        <a class="" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('blog.edit', $blog) }}">Edit</a></li>
+                            <li>
+                                <form action="{{ route('blog.destroy', $blog) }}" method="post" id="delete-blog">
+                                    @csrf
+                                    @method('delete')
+                                    <a class="dropdown-item bg-danger text-white" data-bs-toggle="modal" data-bs-target="#my-blog"
+                                    type=button onclick="document.getElementById('delete-blog').submit();"
+                                    >
+                                        Delete
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 
     <h1 class="mb-3">{{ $blog->title }}</h1>

@@ -28,9 +28,9 @@ Route::get('/create', function () {
 })->name('blog.create');
 
 
-Route::get('/edit', function () {
-    return view('user.pages.blog.edit');
-})->name('blog.edit');
+// Route::get('/edit', function () {
+//     return view('user.pages.blog.edit');
+// })->name('blog.edit');
 
 Route::get('/profile', function () {
     return view('user.pages.profile.profile');
