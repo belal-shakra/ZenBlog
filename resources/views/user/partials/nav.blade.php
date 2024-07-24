@@ -43,8 +43,11 @@
                 <div class="dropdown">
                     <a type="button">
                         <span class="fw-bold">
-                            {{ Auth::user()->first_name }} {{  Auth::user()->last_name }}
-                        </span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                            @auth
+                                {{ Auth::user()->first_name }} {{  Auth::user()->last_name }}
+                                <i class="bi bi-chevron-down dropdown-indicator"></i>
+                            @endauth
+                            </span>
                     </a>
                     <ul>
                         <li class="nav-item-hover"><a href="{{ route('blog.index') }}">My Blogs</a></li>
@@ -53,6 +56,13 @@
                         <li class="nav-item-hover"><a href="{{ route('blog.index') }}">logout</a></li>
                     </ul>
                 </div>
+
+                @guest
+                    <a href="{{ route('login') }}" class="fs-6">
+                        login
+                        <i class="bi bi-box-arrow-in-right fs-6"></i>
+                    </a>
+            @endguest
             </div>
 
             {{-- <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
