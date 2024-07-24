@@ -10,6 +10,12 @@ class File extends Model
     use HasFactory;
 
 
+    protected $fillable = [
+        'name',
+        'path',
+        'blog_id',
+    ];
+
 
     public function blog(){
         return $this->belongsTo(Blog::class);

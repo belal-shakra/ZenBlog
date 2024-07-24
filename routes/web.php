@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +23,6 @@ Route::get('/about-us', function () {
     return view('user.pages.about');
 })->name('about');
 
-Route::get('/my-blogs', function () {
-    return view('user.pages.blog.index');
-})->name('blog.index');
-
 Route::get('/create', function () {
     return view('user.pages.blog.create');
 })->name('blog.create');
@@ -47,6 +43,7 @@ Route::get('/profile', function () {
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
 Route::resource('contact', ContactController::class)->only(['store']);
 
+Route::resource('blog', BlogController::class);
 
 require __DIR__.'/auth.php';
 
