@@ -13,16 +13,18 @@
 
                 @foreach ($blogs as $blog)
                     <div class="my-2">
-                        <div class="d-lg-flex post-entry-2">
-                            <a href="{{ route('blog.show', $blog) }}" class="me-4 mb-4 mb-lg-0 d-inline-block" style="width: 30%">
-                                <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}" alt="" class="img-fluid">
-                            </a>
+                        <div class="d-lg-flex post-entry-2 row">
+                            <div class="col col-md-4">
+                                <a href="{{ route('blog.show', $blog) }}" class="me-4 mb-4 mb-lg-0 d-inline-block">
+                                    <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}" alt="" class="img-fluid">
+                                </a>
+                            </div>
 
-                            <div>
+                            <div class="col col-md-8">
                                 <div class="post-meta">
                                     <span class="date">{{ $blog->category->category }}</span>
                                     <span class="mx-1">&bullet;</span>
-                                    <span>Jul 5th '22</span>
+                                    <span>{{ $blog->created_at->format('M jS o') }}</span>
                                 </div>
 
                                 <h3><a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a></h3>
@@ -35,6 +37,9 @@
                                     <div class="name">
                                         <h3 class="m-0 p-0">{{ $blog->user->first_name }} {{ $blog->user->last_name }}</h3>
                                     </div>
+                                </div>
+                                <div class="d-grid gap-2 col-3">
+                                    <a href="{{ route('blog.show', $blog) }}" class="btn btn-primary px-5">Read</a>
                                 </div>
                             </div>
                         </div>
