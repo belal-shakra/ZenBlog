@@ -53,7 +53,14 @@
                         <li class="nav-item-hover"><a href="{{ route('blog.index') }}">My Blogs</a></li>
                         <li class="nav-item-hover"><a href="{{ route('blog.create') }}">Add new blog</a></li>
                         <li class="nav-item-hover"><a href="{{ route('user.profile') }}">Profile</a></li>
-                        <li class="nav-item-hover"><a href="{{ route('blog.index') }}">logout</a></li>
+                        <li class="nav-item-hover">
+                            <form action="{{ route('logout') }}" method="post" id="logout">
+                                @csrf
+                                <a type="button"
+                                onclick="document.getElementById('logout').submit();"
+                                >logout</a>
+                            </form>
+                        </li>
                     </ul>
                 </div>
 
@@ -62,7 +69,7 @@
                         login
                         <i class="bi bi-box-arrow-in-right fs-6"></i>
                     </a>
-            @endguest
+                @endguest
             </div>
 
             {{-- <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
