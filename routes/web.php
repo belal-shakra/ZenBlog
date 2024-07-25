@@ -37,6 +37,7 @@ Route::get('/profile', function () {
 })->name('user.profile');
 
 
+
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
 Route::resource('contact', ContactController::class)->only(['store']);
 
