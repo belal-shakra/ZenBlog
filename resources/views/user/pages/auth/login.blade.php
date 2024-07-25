@@ -29,7 +29,7 @@
 
                                     <div class="row gy-2 overflow-hidden">
                                         <div class="col-12">
-                                            <x-input type="text" name="email" placeholder="Email" :value="old('email')"/>
+                                            <x-input type="email" name="email" placeholder="Email" :value="old('email')"/>
                                         </div>
 
                                         <div class="col-12">
