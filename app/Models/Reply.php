@@ -9,6 +9,12 @@ class Reply extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'reply',
+        'comment_id',
+        'user_id',
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

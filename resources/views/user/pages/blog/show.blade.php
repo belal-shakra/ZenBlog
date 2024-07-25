@@ -8,8 +8,9 @@
 
 
 <main id="main">
-
     <section class="single-post-content">
+
+
         <div class="container">
             <div class="row">
                 <div class="col-md-9 post-content">

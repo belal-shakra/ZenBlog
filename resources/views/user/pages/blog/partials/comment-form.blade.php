@@ -1,25 +1,31 @@
-<!-- ======= Comments Form ======= -->
 <div class="row justify-content-center mt-5">
+    @auth
+        <div class="col-lg-12">
+            <h5 class="comment-title">Leave a Comment</h5>
+            <div class="row">
+                <form action="{{ route('comment.store', $blog) }}" method="post">
+                    @csrf
 
-    <div class="col-lg-12">
-        <h5 class="comment-title">Leave a Comment</h5>
-        <div class="row">
-        <div class="col-lg-6 mb-3">
-            <label for="comment-name">Name</label>
-            <input type="text" class="form-control" id="comment-name" placeholder="Enter your name">
-        </div>
-        <div class="col-lg-6 mb-3">
-            <label for="comment-email">Email</label>
-            <input type="text" class="form-control" id="comment-email" placeholder="Enter your email">
-        </div>
-        <div class="col-12 mb-3">
-            <label for="comment-message">Message</label>
+                    <div class="col-12 mb-3">
+                        <x-form.textarea name="comment" placeholder="Message" :value="old('message')"/>
+                    </div>
 
-            <textarea class="form-control" id="comment-message" placeholder="Enter your name" cols="30" rows="10"></textarea>
+                    <div class="col-12">
+                        <input type="submit" class="btn btn-primary" value="Comment">
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-12">
-            <input type="submit" class="btn btn-primary" value="Post comment">
+    @endauth
+
+
+    @guest
+        <div>
+            <p>
+                To add a comment
+                <a href="{{ route('login') }}" style="color: rgb(0, 68, 255)">login now</a>
+            </p>
         </div>
-        </div>
-    </div>
-</div><!-- End Comments Form -->
+    @endguest
+
+</div>

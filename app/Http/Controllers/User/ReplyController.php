@@ -2,42 +2,30 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Comment;
 use App\Models\Reply;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Comment $comment)
     {
-        //
-    }
+        $request->validate([
+            'reply' => ['required', 'max:500'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Reply $reply)
-    {
-        //
+        Reply::create([
+            'reply' => $request->reply,
+            'user_id' => Auth::user()->id,
+            'comment_id' => $comment->id,
+        ]);
+
+        return redirect("blog/". $comment->blog->id ."#comments");
     }
 
     /**

@@ -1,5 +1,5 @@
 <!-- ======= Comments ======= -->
-<div class="comments">
+<div class="comments pt-5"  id="comments">
     <h5 class="comment-title py-4">{{ $blog->comments->count() }} Comments</h5>
 
     @foreach ($blog->comments as $comment)
@@ -13,48 +13,41 @@
             <div class="flex-grow-1 ms-2 ms-sm-3">
                 <div class="comment-meta d-flex align-items-baseline">
                     <h6 class="me-2">{{ $comment->user->first_name }}{{ $comment->user->last_name }}</h6>
-                    <span class="text-muted"> {{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+                    <span class="text-muted">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                 </div>
 
                 <div class="comment-body">{{ $comment->comment }}</div>
 
-                {{-- <div class="comment-replies bg-light p-3 mt-3 rounded">
-                    <h6 class="comment-replies-title mb-4 text-muted text-uppercase">2 replies</h6>
 
-                    <div class="reply d-flex mb-4">
-                    <div class="flex-shrink-0">
-                        <div class="avatar avatar-sm rounded-circle">
-                        <img class="avatar-img" src="{{asset('assets')}}/user//img/person-4.jpg" alt="" class="img-fluid">
+                <div class="accordion pt-3" id="replies{{ $loop->iteration }}">
+                    <a type="button" data-bs-toggle="collapse" data-bs-target="#reply{{ $loop->iteration }}"
+                    style="color: rgb(0, 68, 255)">
+                        replies ({{ $comment->replies->count() }})
+                    </a>
+
+                    <div id="reply{{ $loop->iteration }}"
+                        class="accordion-collapse collapse" data-bs-parent="#replies{{ $loop->iteration }}">
+                        <div class="accordion-body">
+                            @include('user.pages.blog.partials.reply')
                         </div>
                     </div>
-                    <div class="flex-grow-1 ms-2 ms-sm-3">
-                        <div class="reply-meta d-flex align-items-baseline">
-                        <h6 class="mb-0 me-2">Brandon Smith</h6>
-                        <span class="text-muted">2d</span>
-                        </div>
-                        <div class="reply-body">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        </div>
+                </div>
+
+
+                @auth
+                    <div class="my-2">
+                        <form action="{{ route('reply.store', $comment) }}" method="post">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control border border-1 border-secondary"
+                                placeholder="Reply" name="reply" value="{{ old('reply') }}">
+                                <input type=submit class="input-group-text btn btn-primary" value="Reply">
+                            </div>
+                        </form>
                     </div>
-                    </div>
-                    <div class="reply d-flex">
-                    <div class="flex-shrink-0">
-                        <div class="avatar avatar-sm rounded-circle">
-                        <img class="avatar-img" src="{{asset('assets')}}/user//img/person-3.jpg" alt="" class="img-fluid">
-                        </div>
-                    </div>
-                    <div class="flex-grow-1 ms-2 ms-sm-3">
-                        <div class="reply-meta d-flex align-items-baseline">
-                        <h6 class="mb-0 me-2">James Parsons</h6>
-                        <span class="text-muted">1d</span>
-                        </div>
-                        <div class="reply-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolore sed eos sapiente, praesentium.
-                        </div>
-                    </div>
-                    </div>
-                </div> --}}
+                @endauth
             </div>
+
         </div>
     @endforeach
 

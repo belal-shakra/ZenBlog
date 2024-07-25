@@ -7,7 +7,7 @@
             <span>{{ $blog->created_at->format('M jS o') }}</span>
         </div>
 
-        @if ($blog->user_id == Auth::user()->id)
+        @if (Auth::check() && $blog->user_id == Auth::user()->id)
             <div class="col col-3">
                 <div class="d-flex flex-row-reverse">
                     <div class="dropdown my-2 fs-4">

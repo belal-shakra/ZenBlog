@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\User\CommentController;
+use App\Http\Controllers\User\ReplyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,10 +30,6 @@ Route::get('/create', function () {
 })->name('blog.create');
 
 
-// Route::get('/edit', function () {
-//     return view('user.pages.blog.edit');
-// })->name('blog.edit');
-
 Route::get('/profile', function () {
     return view('user.pages.profile.profile');
 })->name('user.profile');
@@ -41,7 +39,21 @@ Route::get('/profile', function () {
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
 Route::resource('contact', ContactController::class)->only(['store']);
 
-Route::resource('blog', BlogController::class)->middleware('auth');
+
+// Blog
+Route::resource('blog', BlogController::class);
+Route::middleware('auth')->group(function(){
+
+    // Comment
+    Route::post('blog/store/{blog}', [CommentController::class, 'store'])->name('comment.store');
+    Route::resource('comment', CommentController::class)->except(['index','create','show', 'store']);
+
+    // Reply
+    Route::post('reply/store/{comment}', [ReplyController::class, 'store'])->name('reply.store');
+    Route::resource('reply', ReplyController::class)->except(['index','create','show', 'store']);
+});
+
+
 
 require __DIR__.'/auth.php';
 

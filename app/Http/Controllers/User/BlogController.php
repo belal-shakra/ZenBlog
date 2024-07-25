@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth')->except(['show']);
+    }
+
     /**
      * Display a listing of the resource.
      */
