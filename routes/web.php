@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\ReplyController;
 use Illuminate\Support\Facades\Route;
@@ -30,9 +31,16 @@ Route::get('/create', function () {
 })->name('blog.create');
 
 
-Route::get('/profile', function () {
-    return view('user.pages.profile.profile');
-})->name('user.profile');
+Route::get('/category/{category_name}', function () {
+    return view('user.pages.category');
+})->name('user.category');
+
+
+
+Route::controller(MainController::class)->group(function(){
+    Route::get('/category/{category_name}', 'category')->name('main.category');
+});
+
 
 
 
@@ -42,8 +50,8 @@ Route::resource('contact', ContactController::class)->only(['store']);
 
 // Blog
 Route::resource('blog', BlogController::class);
-Route::middleware('auth')->group(function(){
 
+Route::middleware('auth')->group(function(){
     // Comment
     Route::post('blog/store/{blog}', [CommentController::class, 'store'])->name('comment.store');
     Route::resource('comment', CommentController::class)->except(['index','create','show', 'store']);

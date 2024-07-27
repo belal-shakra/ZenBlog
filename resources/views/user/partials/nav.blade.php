@@ -10,26 +10,17 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="{{ route('home') }}">Blog</a></li>
-                <li><a href="single-post.html">Single Post</a></li>
                 <li class="dropdown">
-                    <a href="category.html">
+                    <a type="button">
                         <span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                     </a>
+
                     <ul>
-                        <li class="nav-item-hover"><a href="search-result.html">Search Result</a></li>
-                        <li class="nav-item-hover"><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown nav-item-hover"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul>
-                                <li class="nav-item-hover"><a href="#">Deep Drop Down 1</a></li>
-                                <li class="nav-item-hover"><a href="#">Deep Drop Down 2</a></li>
-                                <li class="nav-item-hover"><a href="#">Deep Drop Down 3</a></li>
-                                <li class="nav-item-hover"><a href="#">Deep Drop Down 4</a></li>
-                                <li class="nav-item-hover"><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item-hover"><a href="#">Drop Down 2</a></li>
-                        <li class="nav-item-hover"><a href="#">Drop Down 3</a></li>
-                        <li class="nav-item-hover"><a href="#">Drop Down 4</a></li>
+                        @foreach ($categories as $category)
+                            <li class="nav-item-hover">
+                                <a href="{{ route('main.category', $category->category) }}">{{ $category->category }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
 
@@ -52,7 +43,6 @@
                     <ul>
                         <li class="nav-item-hover"><a href="{{ route('blog.index') }}">My Blogs</a></li>
                         <li class="nav-item-hover"><a href="{{ route('blog.create') }}">Add new blog</a></li>
-                        <li class="nav-item-hover"><a href="{{ route('user.profile') }}">Profile</a></li>
                         <li class="nav-item-hover">
                             <form action="{{ route('logout') }}" method="post" id="logout">
                                 @csrf
