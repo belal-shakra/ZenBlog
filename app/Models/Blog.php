@@ -12,9 +12,10 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
-        'category_id',
         'blog',
+        'views',
         'user_id',
+        'category_id',
     ];
 
 

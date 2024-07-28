@@ -65,6 +65,13 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
+        $viewedBlogs = session()->get('viewed_blogs', []);
+
+        if (!in_array($blog->id, $viewedBlogs)) {
+            $blog->increment('views');
+            session()->push('viewed_blogs', $blog->id);
+        }
+
         return view('user.pages.blog.show', ['blog'=>$blog]);
     }
 
