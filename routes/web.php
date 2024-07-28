@@ -18,18 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.pages.home.home');
-})->name('home');
-
-Route::get('/about-us', function () {
-    return view('user.pages.about');
-})->name('about');
-
-Route::get('/create', function () {
-    return view('user.pages.blog.create');
-})->name('blog.create');
-
 
 Route::get('/category/{category_name}', function () {
     return view('user.pages.category');
@@ -38,6 +26,8 @@ Route::get('/category/{category_name}', function () {
 
 
 Route::controller(MainController::class)->group(function(){
+    Route::get('/', 'home')->name('main.home');
+    Route::get('/about-us', 'about')->name('main.about');
     Route::get('/category/{category_name}', 'category')->name('main.category');
 });
 

@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="{{ route('home') }}" class="logo d-flex align-items-center">
+        <a href="{{ route('main.home') }}" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <img src="{{asset('assets')}}/user/img/logo.png" alt="logo">
             <h1>ZenBlog</h1>
@@ -9,7 +9,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{{ route('home') }}">Blog</a></li>
+                <li><a href="{{ route('main.home') }}">Blog</a></li>
                 <li class="dropdown">
                     <a type="button">
                         <span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
@@ -24,7 +24,7 @@
                     </ul>
                 </li>
 
-                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('main.about') }}">About</a></li>
                 <li><a href="{{ route('contact.create') }}">Contact</a></li>
             </ul>
         </nav>

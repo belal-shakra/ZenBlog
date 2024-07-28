@@ -8,7 +8,16 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    function category(string $category_name){
+
+    public function home(){
+        return view('user.pages.home.home');
+    }
+
+    public function about(){
+        return view('user.pages.about');
+    }
+
+    public function category(string $category_name){
 
         $category = Category::firstWhere('category', $category_name);
         if(!$category)
