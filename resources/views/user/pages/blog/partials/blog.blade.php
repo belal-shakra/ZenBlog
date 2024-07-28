@@ -4,7 +4,7 @@
         <div class="col col-9 d-flex align-items-center">
             <span class="date">{{ $blog->category->category }}</span>
             <span class="mx-1">&bullet;</span>
-            <span>{{ $blog->created_at->format('M jS o') }}</span>
+            <span>{{ Carbon\Carbon::parse($blog->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
         </div>
 
         @if (Auth::check() && $blog->user_id == Auth::user()->id)

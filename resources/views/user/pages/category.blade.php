@@ -26,7 +26,7 @@
                                     <div class="post-meta">
                                         <span class="date">{{ $blog->category->category }}</span>
                                         <span class="mx-1">&bullet;</span>
-                                        <span>{{ $blog->created_at->format('M jS o') }}</span>
+                                        <span>{{ Carbon\Carbon::parse($blog->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
                                     </div>
 
                                     <h3><a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a></h3>
