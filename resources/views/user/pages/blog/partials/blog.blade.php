@@ -42,7 +42,7 @@
     </figure>
 
 
-    <p class="pe-3">
+    <p class="pe-3 first">
         {{-- <span class="firstcharacter">L</span> --}}
         {!! nl2br($blog->blog) !!}
     </p>
