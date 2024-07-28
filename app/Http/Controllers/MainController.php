@@ -16,7 +16,7 @@ class MainController extends Controller
 
         $category_blogs = Blog::where('category_id', $category->id)->get();
         return view('user.pages.category', [
-            'category_blogs' =>Blog::where('category_id', $category->id)->paginate(),
+            'category_blogs' =>Blog::where('category_id', $category->id)->paginate(10),
             'category' => $category_name,
         ]);
     }

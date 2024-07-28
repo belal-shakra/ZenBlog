@@ -47,6 +47,10 @@
                             </div>
                         @endforeach
 
+                        @if (!$category_blogs->count())
+                            <div class="py-3 text-center">There is no any blogs belongs to this category.</div>
+                        @endif
+
 
                             {{ $category_blogs->links() }}
 
