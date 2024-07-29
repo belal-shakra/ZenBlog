@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\ReplyController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +20,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/category/{category_name}', function () {
-    return view('user.pages.category');
-})->name('user.category');
-
-
 
 Route::controller(MainController::class)->group(function(){
     Route::get('/', 'home')->name('main.home');
@@ -32,8 +28,7 @@ Route::controller(MainController::class)->group(function(){
 });
 
 
-
-
+// Contact-us
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
 Route::resource('contact', ContactController::class)->only(['store']);
 
@@ -50,6 +45,13 @@ Route::middleware('auth')->group(function(){
     Route::post('reply/store/{comment}', [ReplyController::class, 'store'])->name('reply.store');
     Route::resource('reply', ReplyController::class)->except(['index','create','show', 'store']);
 });
+
+
+Route::controller(UserProfileController::class)->name('profile.')->middleware('auth')->group(function(){
+    Route::get('/user-profile', 'show')->name('show');
+    Route::patch('/user-profile/update', 'update')->name('update');
+});
+
 
 
 

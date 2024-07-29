@@ -43,6 +43,7 @@
                     <ul>
                         <li class="nav-item-hover"><a href="{{ route('blog.index') }}">My Blogs</a></li>
                         <li class="nav-item-hover"><a href="{{ route('blog.create') }}">Add new blog</a></li>
+                        <li class="nav-item-hover"><a href="{{ route('profile.show') }}">Profile</a></li>
                         <li class="nav-item-hover">
                             <form action="{{ route('logout') }}" method="post" id="logout">
                                 @csrf
