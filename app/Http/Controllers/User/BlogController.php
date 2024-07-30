@@ -121,4 +121,12 @@ class BlogController extends Controller
 
         return to_route('blog.index');
     }
+
+
+    public function save(Blog $blog){
+
+        $blog->saves()->attach(Auth::user()->id);
+
+        return back();
+    }
 }

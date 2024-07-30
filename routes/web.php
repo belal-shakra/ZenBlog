@@ -34,6 +34,7 @@ Route::resource('contact', ContactController::class)->only(['store']);
 
 
 // Blog
+Route::post('/blog/save/{blog}', [BlogController::class, 'save'])->name('blog.save')->middleware('auth');
 Route::resource('blog', BlogController::class);
 
 Route::middleware('auth')->group(function(){
