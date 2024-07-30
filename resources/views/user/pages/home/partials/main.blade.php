@@ -24,9 +24,14 @@
 
 
                             <div class="d-flex align-items-center author">
-                                <div class="photo"><img src="{{asset('assets')}}/user/img/person-1.jpg" alt="" class="img-fluid"></div>
+                                <div class="photo">
+                                    <x-user.profile-image width="auto"
+                                    :src="asset('storage/'. $blog->user->user_profile_image->path .'/'. $blog->user->user_profile_image->name)"
+                                    />
+                                </div>
                                 <div class="name">
-                                <h3 class="m-0 p-0">{{ $blog->user->first_name }} {{ $blog->user->last_name }}</h3>
+                                    <h3 class="m-0 p-0">{{ $blog->user->first_name }} {{ $blog->user->last_name }}</h3>
+                                    <small>{{ $blog->user->username }}</small>
                                 </div>
                             </div>
                         </div>

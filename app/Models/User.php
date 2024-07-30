@@ -46,6 +46,10 @@ class User extends Authenticatable
     ];
 
 
+    public function user_profile_image(){
+        return $this->hasOne(UserProfileImage::class);
+    }
+
     public function blogs(){
         return $this->hasMany(Blog::class);
     }

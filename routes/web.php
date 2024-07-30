@@ -47,13 +47,12 @@ Route::middleware('auth')->group(function(){
 });
 
 
-Route::controller(UserProfileController::class)->name('profile.')->middleware('auth')->group(function(){
+Route::controller(UserProfileController::class)->name('user.profile.')->middleware('auth')->group(function(){
     Route::get('/user-profile', 'show')->name('show');
     Route::patch('/user-profile/update', 'update')->name('update');
+    Route::patch('/user-profile/update_image', 'update_image')->name('update_image');
+    Route::post('/user-profile/reset_password', 'reset_password')->name('reset_password');
 });
-
-
-
 
 require __DIR__.'/auth.php';
 

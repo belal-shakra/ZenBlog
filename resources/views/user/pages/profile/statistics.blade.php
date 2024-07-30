@@ -8,7 +8,7 @@
                     <div class="col-10 col-lg-9 col-xl-10">
                         <h5 class="card-title small lead fw-bold">Blogs</h5>
                         <p class="card-text">
-                            <span class="fs-4">120 </span>blogs
+                            <span class="fs-4">{{ Auth::user()->blogs->count() }}</span> blogs
                         </p>
                     </div>
                     <div class="col-2 col-lg-3 col-xl-2 fs-1">
@@ -26,7 +26,7 @@
                     <div class="col-10 col-lg-9 col-xl-10">
                         <h5 class="card-title small lead fw-bold">Comment</h5>
                         <p class="card-text">
-                            <span class="fs-4">120 </span>comments
+                            <span class="fs-4">{{ Auth::user()->comments->count() }}</span> comments
                         </p>
                     </div>
                     <div class="col-2 col-lg-3 col-xl-2 fs-1">
@@ -44,7 +44,7 @@
                     <div class="col-10 col-lg-9 col-xl-10">
                         <h5 class="card-title small lead fw-bold">Replies</h5>
                         <p class="card-text">
-                            <span class="fs-4">120 </span>replies
+                            <span class="fs-4">{{ Auth::user()->replies->count() }} </span>replies
                         </p>
                     </div>
                     <div class="col-2 col-lg-3 col-xl-2 fs-1">
@@ -62,56 +62,49 @@
 <div class="row py-3">
     <h2>Has most :</h2>
 
+    {{-- Views --}}
     <div class="col-sm-12 col-lg-6">
-        <b>Views</b>
+        <b>Views ({{ $view->views }})</b>
         <div class="d-lg-flex post-entry-2 me-1 row">
             <div class="col col-md-4">
                 <a href="" class="me- mb- b-lg-0 d-inline-block">
-                    <img src="{{ asset('assets/user/img/post-landscape-3.jpg') }}" alt="" class="img-fluid">
+                    <img src="{{asset('storage/'.$view->file->path.'/'.$view->file->name) }}" alt="" class="img-fluid">
                 </a>
             </div>
 
             <div class="col col-md-8">
                 <div class="post-meta">
-                    <span class="date">Sport</span>
+                    <span class="date">{{ $view->category->category }}</span>
                     <span class="mx-1">&bullet;</span>
-                    <span>22 JUL 2024</span>
+                    <span>{{ Carbon\Carbon::parse($view->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
                 </div>
 
-                <h3 class="text-truncate"><a href="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                <p class="text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nemo,
-                    quas sapiente molestias labore, harum illo provident aut eligendi dolorem facere odit,
-                    quae inventore hic! Aperiam exercitationem quas placeat quisquam quibusdam iste explicabo sapiente,
-                    enim amet nemo aspernatur mollitia dolorem!
-                </p>
+                <h3 class="text-truncate"><a href="{{ route('blog.show', $view) }}">{{ $view->title }}</a></h3>
+                <p class="text-truncate">{{ $view->blog }}</p>
             </div>
         </div>
     </div>
 
+    {{-- Comments --}}
     <div class="col-sm-12 col-lg-6">
-        <b>Comments</b>
+        <b>Comments ({{ $comment->comments->count() }})</b>
         <div class="d-lg-flex post-entry-2 me-1 row">
             <div class="col col-md-4">
                 <a href="" class="me- mb- b-lg-0 d-inline-block">
-                    <img src="{{ asset('assets/user/img/post-landscape-3.jpg') }}" alt="" class="img-fluid">
+                    <img src="{{asset('storage/'.$comment->file->path.'/'.$comment->file->name) }}" alt="" class="img-fluid">
                 </a>
             </div>
 
             <div class="col col-md-8">
                 <div class="post-meta">
-                    <span class="date">Sport</span>
+                    <span class="date">{{ $comment->category->category }}</span>
                     <span class="mx-1">&bullet;</span>
-                    <span>22 JUL 2024</span>
+                    <span>{{ Carbon\Carbon::parse($comment->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
                 </div>
 
-                <h3 class="text-truncate"><a href="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                <p class="text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nemo,
-                    quas sapiente molestias labore, harum illo provident aut eligendi dolorem facere odit,
-                    quae inventore hic! Aperiam exercitationem quas placeat quisquam quibusdam iste explicabo sapiente,
-                    enim amet nemo aspernatur mollitia dolorem!
-                </p>
+
+                <h3 class="text-truncate"><a href="{{ route('blog.show', $comment) }}">{{ $comment->title }}</a></h3>
+                <p class="text-truncate">{{ $comment->blog }}</p>
             </div>
         </div>
     </div>
