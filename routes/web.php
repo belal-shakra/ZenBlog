@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+// Main
 Route::controller(MainController::class)->group(function(){
     Route::get('/', 'home')->name('main.home');
     Route::get('/about-us', 'about')->name('main.about');
@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function(){
 });
 
 
+// Profile
 Route::controller(UserProfileController::class)->name('user.profile.')->middleware('auth')->group(function(){
     Route::get('/user-profile', 'show')->name('show');
     Route::patch('/user-profile/update', 'update')->name('update');

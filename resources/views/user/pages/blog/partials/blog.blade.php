@@ -23,7 +23,11 @@
                                     <a class="dropdown-item"type=button
                                     onclick="document.getElementById('save-blog').submit();"
                                     >
-                                        Save
+                                        @if($blog->users?->first()?->id)
+                                            Unsave
+                                        @else
+                                            Save
+                                        @endif
                                     </a>
                                 </form>
                             </li>
@@ -52,9 +56,11 @@
     <h1 class="mb-3">{{ $blog->title }}</h1>
 
     <figure class="my-4 position-relative">
-        <span class="position-absolute p-0 text-warning" style="top: -4%; left:-1%; font-size: 3rem;">
-            <i class="bi bi-bookmark-star-fill"></i>
-        </span>
+        @if($blog->users?->first()?->id)
+            <span class="position-absolute p-0 text-warning" style="top: -4%; left:-1%; font-size: 3rem;">
+                <i class="bi bi-bookmark-star-fill"></i>
+            </span>
+        @endif
 
         <div>
             <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}"

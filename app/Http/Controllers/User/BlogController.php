@@ -125,7 +125,10 @@ class BlogController extends Controller
 
     public function save(Blog $blog){
 
-        $blog->saves()->attach(Auth::user()->id);
+        if(!$blog->users?->first()?->id)
+            $blog->users()->attach(Auth::user()->id);
+        else
+            $blog->users()->detach(Auth::user()->id);
 
         return back();
     }

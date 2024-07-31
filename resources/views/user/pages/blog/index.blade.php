@@ -14,33 +14,23 @@
                 @foreach ($blogs as $blog)
                     <div class="my-2">
                         <div class="d-lg-flex post-entry-2 row">
-                            <div class="col col-md-4">
-                                <a href="{{ route('blog.show', $blog) }}" class="me-4 mb-4 mb-lg-0 d-inline-block">
+                            <div class="col-4">
+                                <a href="{{ route('blog.show', $blog) }}" class="me-sm- d-inline-block">
                                     <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}" alt="" class="img-fluid">
                                 </a>
                             </div>
 
-                            <div class="col col-md-8">
+                            <div class="col-8">
                                 <div class="post-meta">
                                     <span class="date">{{ $blog->category->category }}</span>
                                     <span class="mx-1">&bullet;</span>
                                     <span>{{ $blog->created_at->format('M jS o') }}</span>
                                 </div>
 
-                                <h3><a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a></h3>
-                                <p class="text-truncate">{{ $blog->blog }}</p>
-                                <div class="d-flex align-items-center author">
-                                    <div class="photo">
-                                        <x-user.profile-image width="auto"
-                                        src="asset('storage/'. $blog->user->user_profile_image->path .'/'. $blog->user->user_profile_image->name)"
-                                        />
-                                    </div>
-                                    <div class="name">
-                                        <h3 class="m-0 p-0">{{ $blog->user->first_name }} {{ $blog->user->last_name }}</h3>
-                                        <small>{{ $blog->user->username }}</small>
-                                    </div>
-                                </div>
-                                <div class="d-grid gap-2 col-3">
+                                <h3 class="text-truncate"><a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a></h3>
+                                <p class="text-truncate d-sm-block d-none">{{ $blog->blog }}</p>
+
+                                <div class="d-grid gap-2 col-3 d-lg-block d-none">
                                     <a href="{{ route('blog.show', $blog) }}" class="btn btn-primary px-5">Read</a>
                                 </div>
                             </div>

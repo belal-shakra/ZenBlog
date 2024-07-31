@@ -63,6 +63,6 @@ class User extends Authenticatable
     }
 
     public function saves(){
-        return $this->belongsToMany(Blog::class);
+        return $this->belongsToMany(Blog::class, 'save_user', 'user_id', 'blog_id');
     }
 }

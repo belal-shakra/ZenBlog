@@ -40,6 +40,6 @@ class Blog extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'save_user', 'blog_id', 'user_id');
     }
 }

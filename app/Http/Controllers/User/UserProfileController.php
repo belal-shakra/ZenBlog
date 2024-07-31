@@ -21,7 +21,6 @@ class UserProfileController extends Controller
         $comment = Blog::withCount('comments')->orderBy('comments_count', 'desc')
         ->firstWhere('user_id', Auth::user()->id);
 
-
         return view('user.pages.profile.profile', compact(['view', 'comment']));
     }
 
@@ -66,6 +65,7 @@ class UserProfileController extends Controller
         return to_route('user.profile.show')->with('imageUpdated', 'The Profile image updated successfully.');
 
     }
+
 
     public function reset_password(Request $request){
         $request->validate([
