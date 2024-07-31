@@ -7,7 +7,7 @@
 
                     @if ($loop->index > 2)
                         <div class="post-entry-1 lg">
-                            <a href="single-post.html">
+                            <a href="{{ route('blog.show', $blog) }}">
                                 <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}"
                                 alt="blog-image" class="img-fluid">
                             </a>
@@ -45,33 +45,28 @@
 
 
             <div class="col-lg-3">
-                {{-- <div class="row g-5">
-                    <div class="col-lg-4 border-start custom-border"> --}}
-                        @foreach ($latest as $blog)
-                            <div class="post-entry-1">
-                                <a href="single-post.html">
-                                    <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}"
-                                    alt="" class="img-fluid">
-                                </a>
+                @foreach ($latest as $blog)
+                    <div class="post-entry-1">
+                        <a href="{{ route('blog.show', $blog) }}">
+                            <img src="{{asset('storage/'.$blog->file->path.'/'.$blog->file->name) }}"
+                            alt="" class="img-fluid">
+                        </a>
 
-                                <div class="post-meta">
-                                    <span class="date">{{ $blog->category->category }}</span>
-                                    <span class="mx-1">&bullet;</span>
-                                    <span>{{ Carbon\Carbon::parse($blog->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
-                                </div>
+                        <div class="post-meta">
+                            <span class="date">{{ $blog->category->category }}</span>
+                            <span class="mx-1">&bullet;</span>
+                            <span>{{ Carbon\Carbon::parse($blog->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
+                        </div>
 
-                                <h2>
-                                    <a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a>
-                                </h2>
-                            </div>
+                        <h2>
+                            <a href="{{ route('blog.show', $blog) }}">{{ $blog->title }}</a>
+                        </h2>
+                    </div>
 
-                            @if ($loop->index == 2)
-                                @break
-                            @endif
-                        @endforeach
-
-                    {{-- </div>
-                </div> --}}
+                    @if ($loop->index == 2)
+                        @break
+                    @endif
+                @endforeach
             </div>
 
 

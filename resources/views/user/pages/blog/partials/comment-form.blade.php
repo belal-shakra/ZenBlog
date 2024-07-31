@@ -1,4 +1,4 @@
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center my-5">
     @auth
         <div class="col-lg-12">
             <h5 class="comment-title">Leave a Comment</h5>

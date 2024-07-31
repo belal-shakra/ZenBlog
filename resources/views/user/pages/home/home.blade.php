@@ -12,8 +12,6 @@
 
         @include('user.pages.home.partials.main')
 
-        {{-- @include('user.pages.home.partials.category') --}}
-
     </main>
 
 @endsection
