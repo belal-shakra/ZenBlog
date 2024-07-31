@@ -45,11 +45,9 @@
 
                                             <x-form.input type="password" name="password_confirmation" :value="old('password_confirmation')" placeholder="Password Confirmation"/>
 
-
-
                                             <div class="py-1">
                                                 already have an account?
-                                                <a href="{{ route('user.login') }}"
+                                                <a href="{{ route('login') }}"
                                                 style="color: rgb(41 115 255); text-decoration:underline;">login</a>
                                             </div>
 
