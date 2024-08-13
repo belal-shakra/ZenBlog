@@ -755,16 +755,24 @@ h6 {
 }
 
 .sidebar-nav .nav-item a.active {
-  background-color: #4153f146;
+  background-color: #4153f1ab;
+  color: white;
+}
+
+.sidebar-nav .nav-item a.active i {
+  color: white;
 }
 
 .sidebar-nav .nav-item a:hover {
-  background-color: #4153f146;
+  background-color: #4153f1ab;
+  color: white;
 }
 
-.sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+.sidebar-nav .nav-item a:hover i {
+  color: white;
 }
+
+
 
 /*--------------------------------------------------------------
 # Dashboard

@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link @yield('dashbord-activation') active" href="{{ route('admin.main.dashboard') }}">
+            <a class="nav-link @yield('dashboard-activation')" href="{{ route('admin.main.dashboard') }}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
