@@ -12,16 +12,28 @@ class AdminMainController extends Controller
 {
     public function dashboard(){
 
-        // Statistics
+        # Statistics
+        ## blogs
         $blog['today'] = Blog::whereDate('created_at',Carbon::today())->count();
         $blog['month'] = Blog::whereDate('created_at', '>=',Carbon::today()->subDays(30))->count();
         $blog['year'] = Blog::whereDate('created_at', '>=',Carbon::today()->subDays(365))->count();
-        $statisics = collect([$blog]);
+
+        ## users
+        $user['today'] = User::whereDate('created_at', Carbon::today())->count();
+        $user['month'] = User::whereDate('created_at','>=', Carbon::today()->subDays(30))->count();
+        $user['year'] = User::whereDate('created_at','>=', Carbon::today()->subDays(365))->count();
 
 
-        // Top Users
+        $statisics = collect([$blog, $user]);
+
+
+
+        # Top Users
         $top_users = User::withCount('blogs')->orderBy('blogs_count', 'desc')->take(5)->get();
 
-        return view('admin.pages.dashboard', compact(['statisics', 'top_users']));
+        # Top Blogs
+        $top_blogs = Blog::orderBy('views', 'desc')->take(5)->get();
+
+        return view('admin.pages.dashboard', compact(['statisics', 'top_users', 'top_blogs']));
     }
 }
