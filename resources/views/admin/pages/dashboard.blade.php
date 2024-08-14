@@ -16,7 +16,7 @@
                 <div class="col-lg-8">
                     <div class="row">
 
-                        <x-admin.dashboard-card :num="$blogNum"/>
+                        <x-admin.dashboard-card :statisics="$statisics"/>
 
 
                         <div class="col-12">
@@ -25,13 +25,12 @@
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" data-target="#today" data-bs-toggle="tab">Today</a></li>
+                                        <li><a class="dropdown-item" href="#" data-target="#month" data-bs-toggle="tab">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#" data-target="#year" data-bs-toggle="tab">This Year</a></li>
                                     </ul>
                                 </div>
 
@@ -93,7 +92,6 @@
                         </div>
 
 
-                        <!-- Top Selling -->
                         <div class="col-12">
                             <div class="card top-selling overflow-auto">
 
@@ -165,8 +163,7 @@
                             </div>
 
                             </div>
-                        </div><!-- End Top Selling -->
-
+                        </div>
                     </div>
                 </div>
 

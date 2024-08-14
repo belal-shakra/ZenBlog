@@ -33,7 +33,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -317,3 +317,20 @@
   }
 
 })();
+
+
+document.querySelectorAll('.dropdown-item').forEach(function(element) {
+    element.addEventListener('click', function(event) {
+        event.preventDefault();
+        var targetTab = document.querySelector(this.getAttribute('data-target'));
+        var activeTab = document.querySelector('.tab-pane.show.active');
+
+        if (activeTab) {
+            activeTab.classList.remove('show', 'active');
+        }
+
+        if (targetTab) {
+            targetTab.classList.add('show', 'active');
+        }
+    });
+});
