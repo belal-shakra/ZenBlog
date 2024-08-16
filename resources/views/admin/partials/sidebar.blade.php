@@ -31,7 +31,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link @yield('messages-activation')" href="">
+            <a class="nav-link @yield('messages-activation')" href="{{ route('contact.index') }}">
                 <i class="bi bi-envelope-at"></i>
                 <span>User Messages</span>
             </a>

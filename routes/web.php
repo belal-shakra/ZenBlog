@@ -38,7 +38,7 @@ Route::controller(MainController::class)->group(function(){
 
 // Contact-us
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
-Route::resource('contact', ContactController::class)->only(['store']);
+Route::resource('contact', ContactController::class)->except(['create']);
 
 
 // Blog

@@ -8,7 +8,7 @@
 
     <main id="main" class="main">
 
-        <x-admin.page-title />
+        <x-admin.page-title :sub="null" title="Dashboard" />
 
         <section class="section dashboard">
             <div class="row">

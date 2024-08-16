@@ -13,7 +13,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.messages.index');
     }
 
     /**
@@ -41,7 +41,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('admin.pages.messages.show');
     }
 
     /**
