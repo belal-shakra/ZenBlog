@@ -38,6 +38,7 @@ Route::controller(MainController::class)->group(function(){
 
 // Contact-us
 Route::get('/contact-us', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact/pin/{contact}', [ContactController::class, 'pin'])->name('contact.pin');
 Route::resource('contact', ContactController::class)->except(['create']);
 
 

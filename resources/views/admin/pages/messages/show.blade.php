@@ -19,33 +19,60 @@
                                 <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg"
                                 alt="" class="img-fluid rounded-5">
                             </div>
-                            <div class="col-5 fw-bold">
-                                Belal Shakra <br> belal@shakra.com
+
+                            <div class="col-10 fw-bold">
+                                {{ $contact->name }} <br> {{ $contact->email }}
                             </div>
                         </div>
                     </div>
 
                     <div class="col col-9 d-flex flex-row-reverse fw-bold">
-                        20.5.2024 <br /> 20:48
+                        {{ Carbon\Carbon::parse($contact->created_at, 'UTC')->setTimezone('Asia/Amman')->format('j.n.Y') }} <br>
+                        {{ Carbon\Carbon::parse($contact->created_at, 'UTC')->setTimezone('Asia/Amman')->format('G:i') }}
                     </div>
                 </div>
 
                 <div class="m-2 px-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores molestiae cumque, provident ab fuga distinctio ipsam aliquam consequatur est maiores inventore eveniet vel. Veritatis, eaque consectetur quae, omnis repudiandae debitis quis dolor laboriosam reprehenderit optio aliquid doloremque obcaecati recusandae? Perferendis, fugiat laboriosam quaerat reprehenderit eum aut aspernatur quia autem repellat unde, inventore eius assumenda consequatur excepturi iusto mollitia magnam dolor quisquam voluptas error. Aliquid ipsum sequi voluptate eveniet minima ea aperiam numquam cupiditate mollitia. Totam, nam excepturi dolor a sunt alias quam nemo doloribus, rerum debitis deleniti quis illum asperiores doloremque ut labore vero quibusdam placeat quasi earum minus ullam! Possimus veniam, debitis similique deserunt provident ratione voluptas, ducimus doloribus illum eveniet quidem fuga labore accusamus numquam autem, obcaecati impedit.
+                    {{ $contact->message }}
                 </div>
 
                 <div class="m-2 mt-3 px-3">
-                    <div class="accordion-button d-inline" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Reply on email">
-                        <a class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#reply">
-                            <i class="bi bi-reply-all-fill pe-1"></i> Reply
-                        </a>
+
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="accordion-button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Reply on email">
+                                <a class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#reply">
+                                    <i class="bi bi-reply-all-fill pe-1"></i> Reply
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <form action="{{ route('contact.pin', $contact)}}" method="post" id="pin">
+                                @csrf
+                                <a class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Pin in list of messages"
+                                onclick="document.getElementById('pin').submit();"
+                                ><i class="bi bi-pin-fill pe-1"></i>
+                                    @if ($contact->pin)
+                                        Unpin
+                                    @else
+                                        Pin
+                                    @endif
+                                </a>
+                            </form>
+                        </div>
+
+                        <div class="col-1">
+                            <form action="{{ route('contact.destroy', $contact) }}" method="post" id="delete">
+                                @csrf
+                                @method('delete')
+                                <a class="btn btn-danger"data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Delete the message forever"
+                                onclick="document.getElementById('delete').submit();"
+                                ><i class="bi bi-x-circle-fill pe-1"></i> Delete</a>
+                            </form>
+                        </div>
                     </div>
 
-                    <a href="" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Pin in list of messages"
-                    ><i class="bi bi-pin-fill pe-1"></i> Pin</a>
-
-                    <a href="" class="btn btn-danger"  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Delete the message forever"
-                    ><i class="bi bi-x-circle-fill pe-1"></i> Delete</a>
                 </div>
             </div>
 
@@ -60,13 +87,6 @@
                                     <textarea class="form-control border border-1 border-dark"
                                     placeholder="" id="reply-form" style="height: 10rem"></textarea>
                                     <label for="reply-form"></label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="showinall">
-                                    <label class="form-check-label" for="showinall">
-                                        Default checkbox
-                                    </label>
                                 </div>
 
                                 <div class="d-grid gap-2 mt-2">
@@ -85,4 +105,4 @@
     </main>
 
 
-    @endsection
+@endsection

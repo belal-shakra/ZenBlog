@@ -13,7 +13,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.messages.index');
+        $messages = Contact::orderBy('pin', 'desc')->get();
+        return view('admin.pages.messages.index', compact(['messages']));
     }
 
     /**
@@ -41,7 +42,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return view('admin.pages.messages.show');
+        return view('admin.pages.messages.show', ['contact'=> $contact]);
     }
 
     /**
@@ -65,6 +66,19 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return to_route('contact.index');
+    }
+
+    /**
+     * Pin a contact message in the top of the list.
+     * @param \App\Models\Contact $contact
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function pin(Contact $contact){
+
+        $contact->pin ? $contact->pin = 0 : $contact->pin = 1;
+        $contact->save();
+        return back();
     }
 }
