@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminMainController;
+use App\Http\Controllers\Admin\UserAdminViewController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
@@ -84,7 +85,10 @@ Route::prefix('dashboard')->name('admin.')->group(function(){
     });
 
 
-
+    Route::controller(UserAdminViewController::class)->name('user.admin-view.')->group(function(){
+        Route::get('/blog-users', 'index')->name('index');
+        Route::get('/blog-users/{user}', 'show')->name('show');
+    });
 
 
 

@@ -17,7 +17,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link @yield('users-activation')" href="">
+            <a class="nav-link @yield('users-activation')" href="{{ route('admin.user.admin-view.index') }}">
                 <i class="bi bi-people"></i>
                 <span>Users</span>
             </a>
