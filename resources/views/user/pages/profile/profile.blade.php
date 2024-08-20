@@ -53,7 +53,6 @@
                             </div>
                         </div>
 
-
                         <div class="tab-pane fade" id="save-tab-pane" role="tabpanel" aria-labelledby="save-tab" tabindex="0">
                             <div class="ps-2 py-4">
                                 @include('user.pages.profile.saved')

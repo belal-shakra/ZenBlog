@@ -63,49 +63,53 @@
     <h2>Has most :</h2>
 
     {{-- Views --}}
-    <div class="col-sm-12 col-lg-6">
-        <b>Views ({{ $view->views }})</b>
-        <div class="d-lg-flex post-entry-2 me-1 row">
-            <div class="col col-md-4">
-                <a href="" class="me- mb- b-lg-0 d-inline-block">
-                    <img src="{{asset('storage/'.$view->file->path.'/'.$view->file->name) }}" alt="" class="img-fluid">
-                </a>
-            </div>
-
-            <div class="col col-md-8">
-                <div class="post-meta">
-                    <span class="date">{{ $view->category->category }}</span>
-                    <span class="mx-1">&bullet;</span>
-                    <span>{{ Carbon\Carbon::parse($view->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
+    @if ($view)
+        <div class="col-sm-12 col-lg-6">
+            <b>Views ({{ $view->views }})</b>
+            <div class="d-lg-flex post-entry-2 me-1 row">
+                <div class="col col-md-4">
+                    <a href="" class="me- mb- b-lg-0 d-inline-block">
+                        <img src="{{asset('storage/'.$view->file->path.'/'.$view->file->name) }}" alt="" class="img-fluid">
+                    </a>
                 </div>
 
-                <h3 class="text-truncate"><a href="{{ route('blog.show', $view) }}">{{ $view->title }}</a></h3>
-                <p class="text-truncate">{{ $view->blog }}</p>
+                <div class="col col-md-8">
+                    <div class="post-meta">
+                        <span class="date">{{ $view->category->category }}</span>
+                        <span class="mx-1">&bullet;</span>
+                        <span>{{ Carbon\Carbon::parse($view->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
+                    </div>
+
+                    <h3 class="text-truncate"><a href="{{ route('blog.show', $view) }}">{{ $view->title }}</a></h3>
+                    <p class="text-truncate">{{ $view->blog }}</p>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     {{-- Comments --}}
-    <div class="col-sm-12 col-lg-6">
-        <b>Comments ({{ $comment->comments->count() }})</b>
-        <div class="d-lg-flex post-entry-2 me-1 row">
-            <div class="col col-md-4">
-                <a href="" class="me- mb- b-lg-0 d-inline-block">
-                    <img src="{{asset('storage/'.$comment->file->path.'/'.$comment->file->name) }}" alt="" class="img-fluid">
-                </a>
-            </div>
-
-            <div class="col col-md-8">
-                <div class="post-meta">
-                    <span class="date">{{ $comment->category->category }}</span>
-                    <span class="mx-1">&bullet;</span>
-                    <span>{{ Carbon\Carbon::parse($comment->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
+    @if ($comment)
+        <div class="col-sm-12 col-lg-6">
+            <b>Comments ({{ $comment->comments->count() }})</b>
+            <div class="d-lg-flex post-entry-2 me-1 row">
+                <div class="col col-md-4">
+                    <a href="" class="me- mb- b-lg-0 d-inline-block">
+                        <img src="{{asset('storage/'.$comment->file->path.'/'.$comment->file->name) }}" alt="" class="img-fluid">
+                    </a>
                 </div>
 
+                <div class="col col-md-8">
+                    <div class="post-meta">
+                        <span class="date">{{ $comment->category->category }}</span>
+                        <span class="mx-1">&bullet;</span>
+                        <span>{{ Carbon\Carbon::parse($comment->created_at, 'UTC')->setTimezone('Asia/Amman')->format('M jS o') }}</span>
+                    </div>
 
-                <h3 class="text-truncate"><a href="{{ route('blog.show', $comment) }}">{{ $comment->title }}</a></h3>
-                <p class="text-truncate">{{ $comment->blog }}</p>
+
+                    <h3 class="text-truncate"><a href="{{ route('blog.show', $comment) }}">{{ $comment->title }}</a></h3>
+                    <p class="text-truncate">{{ $comment->blog }}</p>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
