@@ -37,6 +37,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link @yield('about-activation')" href="{{ route('admin.about.create') }}">
+                <i class="bi bi-envelope-at"></i>
+                <span>About Us</span>
+            </a>
+        </li>
+
     </ul>
 
 </aside>

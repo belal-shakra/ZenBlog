@@ -78,7 +78,7 @@
             <div class="row justify-content-center">
               <div class="col-lg-6">
                 <h2 class="display-4">Our Team</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sint sed, fugit distinctio ad eius itaque deserunt doloribus harum excepturi laudantium sit officiis et eaque blanditiis. Dolore natus excepturi recusandae.</p>
+                {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sint sed, fugit distinctio ad eius itaque deserunt doloribus harum excepturi laudantium sit officiis et eaque blanditiis. Dolore natus excepturi recusandae.</p> --}}
               </div>
             </div>
           </div>

@@ -1267,3 +1267,17 @@ h6 {
     padding: 5px;
     margin: 1%;
 }
+
+.grid-btn{
+    background-color: #4153f1c8;
+    color: white;
+    padding: 5px;
+    margin: 1%;
+}
+
+.grid-btn:hover{
+    background-color: #4153f1e6;
+    color: white;
+    padding: 5px;
+    margin: 1%;
+}

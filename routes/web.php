@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminMainController;
+use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\UserAdminViewController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\OurMemberController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\ReplyController;
 use App\Http\Controllers\User\UserProfileController;
@@ -89,6 +91,12 @@ Route::prefix('dashboard')->name('admin.')->group(function(){
         Route::get('/blog-users', 'index')->name('index');
         Route::get('/blog-users/{user}', 'show')->name('show');
     });
+
+
+    Route::resource('about', AboutUsController::class)->except(['index', 'show']);
+
+
+    Route::resource('member', OurMemberController::class)->only(['store', 'edit', 'update', 'delete']);
 
 
 
