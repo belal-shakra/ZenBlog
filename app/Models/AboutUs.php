@@ -12,6 +12,7 @@ class AboutUs extends Model
 
 
     protected $fillable = [
+        'title',
         'content',
         'image',
         'path',

@@ -26,16 +26,22 @@
 
 
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show  py-4 px-3" id="create-pane" role="tabpanel" aria-labelledby="create" tabindex="0">
+            <div class="tab-pane fade show active py-4 px-3" id="create-pane" role="tabpanel" aria-labelledby="create" tabindex="0">
                 <div class="row">
 
                     <div class="col-sm-md-12 col-lg-6">
                         <h2>Add Content</h2>
+
+                        <x-main.session session="aboutaddedsuccessfully" type="success"/>
+
                         <form action="{{ route('admin.about.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <x-form.input type="text" name="title" :value="old('title')" placeholder="Title"/>
+
                             <label for="">Image</label>
-                            <x-form.input type="file" name="image" :value="null" :placeholder="null"/>
-                            <x-form.textarea name="content" placeholder="Write here" :value="null"/>
+                            <x-form.input type="file" name="image" :value="old('image')" :placeholder="null"/>
+
+                            <x-form.textarea name="content" placeholder="Write here" :value="old('content')"/>
 
                             <div class="d-grid gap-2">
                                 <input type="submit" value="Add" class="grid-btn">
@@ -73,37 +79,32 @@
             </div>
 
 
-            <div class="tab-pane fade show active py-4 px-3" id="preview-pane" role="tabpanel" aria-labelledby="preview" tabindex="0">
-                <div class="row">
-                    {{-- <div class="col-sm col-lg-">
-                        <img decoding="async" src="https://via.placeholder.com/750x400/F00/FFF?About-Us+placeholder" alt="">
-                    </div>
-                    <div class="col-sm col-lg-6 px-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod tenetur eveniet maxime excepturi eius. Nihil illo sit laboriosam cumque deleniti, et est at magnam accusantium impedit cum accusamus consectetur aliquam minus harum molestias recusandae ab voluptas enim saepe repudiandae quis.</div> --}}
+            <div class="tab-pane fade show py-4 px-3" id="preview-pane" role="tabpanel" aria-labelledby="preview" tabindex="0">
 
-                    <div class="d-flex my-2">
-                        <div class="p-2">
-                            <img decoding="async" src="https://via.placeholder.com/750x400/F00/FFF?About-Us+placeholder" alt="">
-
-                            <a href="" class="btn btn-primary my-1">Edit</a>
-                            <a href="" class="btn btn-danger my-1">Delete</a>
+                <div class="row d-flex">
+                    @foreach ($about_contents as $content)
+                        <div class="d-flex my-2 @if($loop->iteration%2 == 0)flex-row-reverse @endif justify-content-center">
+                            <div class="p-2 w-50">
+                                <img decoding="async" src="{{asset('storage/'.$content->path.'/'.$content->image) }}" alt="" class="img-fluid">
+                                <br>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <a href="{{ route('admin.about.edit', $content) }}" class="btn btn-primary my-1">Edit</a>
+                                    </div>
+                                    <div class="col-1">
+                                        <form action="{{ route('admin.about.destroy', $content) }}" method="post" id="about{{ $loop->iteration }}">
+                                            @csrf
+                                            @method('delete')
+                                            <a type="button" class="btn btn-danger my-1"
+                                            onclick="document.getElementById('about{{ $loop->iteration }}').submit();"
+                                            >Delete</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2 w-50">{{ $content->content }}</div>
                         </div>
-                        <div class="p-2">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati nihil sit veniam autem nemo nobis dignissimos pariatur, rem omnis recusandae reprehenderit voluptate porro incidunt neque consectetur repudiandae ipsum repellat ut? Explicabo tenetur inventore eius quisquam, aperiam minus? Error porro ducimus exercitationem laudantium. Officiis exercitationem quibusdam repellat impedit minus rem aut magni sit dignissimos ad aliquid, tempora distinctio earum laudantium corporis?
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-row-reverse my-2">
-                        <div class="p-2">
-                            <img decoding="async" src="https://via.placeholder.com/750x400/F00/FFF?About-Us+placeholder" alt="">
-
-                            <a href="" class="btn btn-primary my-1">Edit</a>
-                            <a href="" class="btn btn-danger my-1">Delete</a>
-                        </div>
-                        <div class="p-2">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati nihil sit veniam autem nemo nobis dignissimos pariatur, rem omnis recusandae reprehenderit voluptate porro incidunt neque consectetur repudiandae ipsum repellat ut? Explicabo tenetur inventore eius quisquam, aperiam minus? Error porro ducimus exercitationem laudantium. Officiis exercitationem quibusdam repellat impedit minus rem aut magni sit dignissimos ad aliquid, tempora distinctio earum laudantium corporis?
-                        </div>
-                    </div>
-
+                    @endforeach
 
 
                     <hr class="border border-1 border-secondary">
@@ -123,13 +124,8 @@
                     </div>
                 </div>
 
-
             </div>
         </div>
-
-
-
-
 
     </main>
 
