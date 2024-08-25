@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\Helper;
 use App\Models\AboutUs;
+use App\Models\OurMember;
 use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
@@ -15,8 +16,9 @@ class AboutUsController extends Controller
     public function create()
     {
         $about_contents = AboutUs::all();
+        $members = OurMember::all();
 
-        return view('admin.pages.about-us.create', compact(['about_contents']));
+        return view('admin.pages.about-us.create', compact(['about_contents', 'members']));
     }
 
     /**
@@ -61,11 +63,9 @@ class AboutUsController extends Controller
             'image' => 'image|mimes:png,jpg,jpeg',
             'content' => 'required|min:10|max:750'
         ]);
-        $path = "main/about-us/";
-        $updated_about['path'] = $path;
 
         if($request->hasFile('image')){
-            $updated_about['image'] = Helper::file_processing($request->image, $path);
+            $updated_about['image'] = Helper::file_processing($request->image, $about->path);
         }
 
         $about->update($updated_about);

@@ -96,7 +96,7 @@ Route::prefix('dashboard')->name('admin.')->group(function(){
     Route::resource('about', AboutUsController::class)->except(['index', 'show']);
 
 
-    Route::resource('member', OurMemberController::class)->only(['store', 'edit', 'update', 'delete']);
+    Route::resource('member', OurMemberController::class)->only(['store', 'edit', 'update', 'destroy']);
 
 
 

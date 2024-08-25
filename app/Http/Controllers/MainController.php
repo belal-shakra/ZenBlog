@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutUs;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\OurMember;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -16,7 +17,8 @@ class MainController extends Controller
 
     public function about(){
         $abouts = AboutUs::all();
-        return view('user.pages.about', compact(['abouts']));
+        $members = OurMember::all();
+        return view('user.pages.about', compact(['abouts', 'members']));
     }
 
     public function category(string $category_name){
