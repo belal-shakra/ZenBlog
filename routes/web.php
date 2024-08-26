@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserAdminViewController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\ContactController;
@@ -98,6 +99,8 @@ Route::prefix('dashboard')->name('admin.')->group(function(){
 
     Route::resource('member', OurMemberController::class)->only(['store', 'edit', 'update', 'destroy']);
 
+
+    Route::resource('admin', AdminController::class)->except(['edit', 'update', 'destroy']);
 
 
     require __DIR__.'/admin/auth.php';

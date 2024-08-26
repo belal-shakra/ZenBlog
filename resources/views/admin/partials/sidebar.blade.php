@@ -10,7 +10,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link @yield('admins-activation')" href="">
+            <a class="nav-link @yield('admins-activation')" href="{{ route('admin.admin.index') }}">
                 <i class="bi bi-person-gear"></i>
                 <span>Admins</span>
             </a>
