@@ -29,7 +29,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Admin::create($request->validate([
+            'first_name' => 'required|',
+            'last_name' => 'required|',
+            'username' => 'required|alpha_dash|unique:admins,username',
+            'email' => 'required|email',
+        ]));
+
+        return back()->with('adminWasAdded', "The new admin was added successfully.");
     }
 
     /**

@@ -17,7 +17,7 @@
                 <a href="{{ route('admin.admin.create') }}" class="btn btn-primary shadow">Add new admin</a>
             </div>
 
-            @if ($admins->count() == 0)
+            @if ($admins->count())
                 <table class="table table-striped table-hover shadow">
                     <thead>
                         <tr>
@@ -30,15 +30,17 @@
                     </thead>
 
                     <tbody class="table-group-divider">
+                        @foreach ($admins as $admin)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Belal Shakra</td>
-                                <td>belal_shakra</td>
-                                <td>belal@shakra.com</td>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $admin->first_name }} {{ $admin->last_name }}</td>
+                                <td>{{ $admin->username }}</td>
+                                <td>{{ $admin->email }}</td>
                                 <td>
-                                    <a href="" class="dashboard-btn">Show</a>
+                                    <a href="{{ route('admin.admin.show', $admin) }}" class="dashboard-btn">Show</a>
                                 </td>
                             </tr>
+                        @endforeach
                     </tbody>
                 </table>
             @else

@@ -12,6 +12,13 @@ class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new EmailNotification($token));
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,7 +29,6 @@ class Admin extends Authenticatable
         'last_name',
         'username',
         'email',
-        'password',
     ];
 
     /**
